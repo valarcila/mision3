@@ -1,22 +1,25 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import Asteroides from './components/Asteroides'
+import Filtros from './components/Filtros'
 import Header from './components/Header'
 import Informacion from './components/Informacion'
-import Filtros from './components/Filtros'
-import Asteroides from './components/Asteroides'
+import useAsteroides from './hooks/useAsteroides'
 import { 
-  obtenerFechas,
-  aplanarAsteroides,
-  transformarAsteroides,
-  ordenarAsteroides,
+  calcularDistanciaMinima,
   filtrarPeligrosos, 
   filtrarRapidos
 } from './logic'
-import { obtenerAsteroides } from './api'
 import './App.css'
 
 function App() {
   const [filtro, setFiltro] = useState("todos")
-  const [asteroides, setAsteroides] = useState([])
+  const { asteroides, cargando, error } = useAsteroides()
+
+  // informacion
+  const numero = asteroides.length
+  const distanciaMinima = calcularDistanciaMinima(asteroides)
+
+  // filtrar asteroides
   let asteroidesVisibles = asteroides
 
   if (filtro === "peligrosos") {
@@ -29,11 +32,17 @@ function App() {
     <>
       <Header/>
       <main>
-        <Informacion numero = {0} distancia = {0}/>
+        <Informacion numero = {numero} distancia = {distanciaMinima}/>
         <section>
           <h2>Explorar asteroides</h2>
           <Filtros filtro = {filtro} cambiarFiltro = {setFiltro}/>
-          <Asteroides asteroides = {asteroidesVisibles}/>
+          {cargando ? (
+            <p>Cargando...</p>
+          ) : error ? (
+            <p role = "alert">{error}</p>
+          ) : (
+            <Asteroides asteroides = {asteroidesVisibles}/>
+          )}
         </section>
       </main>
     </>

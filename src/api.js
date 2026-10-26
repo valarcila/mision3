@@ -10,7 +10,7 @@ const TIEMPO_ESPERA = 10000
 const API_KEY = import.meta.env.VITE_NASA_API_KEY || "DEMO_KEY"
 
 // funcion asincrona, obtener asteroides entre dos fechas
-export async function obtenerAsteroides(inicio, fin) {
+export async function obtenerAsteroides(inicio, fin, signal) {
     // crear key segun fechas
     const key = `asteroides-${inicio}-${fin}`
     let respuesta 
@@ -30,9 +30,15 @@ export async function obtenerAsteroides(inicio, fin) {
     // intentar conectar con la api
     try {
         respuesta = await fetch(`${BASE_URL}?${parametros}`, {
-            signal: AbortSignal.timeout(TIEMPO_ESPERA)
+            signal: AbortSignal.any([
+                // cancelación react
+                signal ?? new AbortController().signal,
+                AbortSignal.timeout(TIEMPO_ESPERA)
+            ])
         })
     } catch (error) {
+        if (error.name === "AbortError") throw error
+
         if (error.name === "TimeoutError") throw new Error("La NASA ha tardado demasiado en responder") 
       
         throw new Error("No se ha podido conectar con la NASA")
