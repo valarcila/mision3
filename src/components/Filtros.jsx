@@ -1,24 +1,23 @@
+const FILTROS = [
+    { filtro: "todos", texto: "Todos" },
+    { filtro: "peligrosos", texto: "Peligrosos" },
+    { filtro: "rapidos", texto: "Rápidos" },
+]
+
 export default function Filtros ({ filtro, cambiarFiltro }) {
     return (
         <div className = "filtros">
-            <button
-                type = "button"
-                className = {filtro === "todos" ? "activo" : ""}
-                onClick = {() => cambiarFiltro("todos")}>
-                Todos
-            </button>
-            <button
-                type = "button"
-                className = {filtro === "peligrosos" ? "activo" : ""}
-                onClick = {() => cambiarFiltro("peligrosos")}>
-                Peligrosos
-            </button>
-            <button 
-                type = "button"
-                className = {filtro === "rapidos" ? "activo" : ""}
-                onClick = {() => cambiarFiltro("rapidos")}>
-                Rápidos
-            </button>
+            {FILTROS.map(opcion => (
+                <button
+                    type = "button"
+                    key = {opcion.filtro}
+                    className = {filtro === opcion.filtro ? "activo" : ""}
+                    aria-pressed = {filtro === opcion.filtro}
+                    onClick = {() => cambiarFiltro(opcion.filtro)}
+                >
+                    {opcion.texto}
+                </button>
+            ) )}
         </div>
     )
 }

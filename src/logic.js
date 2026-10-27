@@ -1,6 +1,9 @@
 // velocidad minima para considerar rápido un asteroide, km/h 
 const UMBRAL_VELOCIDAD = 70000
 
+const PELIGROSOS_FILTRO = "peligrosos"
+const RAPIDOS_FILTRO = "rapidos"
+
 // obtener intervalo de fechas
 export function obtenerFechas() {
     // obtener fecha actual
@@ -71,4 +74,21 @@ export function filtrarPeligrosos(asteroides) {
 // filtrar asteroides con velocidad superior al umbral de velocidad
 export function filtrarRapidos(asteroides) {
     return asteroides.filter(asteroide => asteroide.velocidad > UMBRAL_VELOCIDAD)
+}
+
+// formatear valores y unidades
+export function formatearNumero(valor, unidad = "", decimales = 0) {
+    return Number.isFinite(valor)
+        ? `${valor.toFixed(decimales)}${unidad ? ` ${unidad}` : ""}`
+        : "Sin datos"
+}
+
+// filtrar asteroides
+export function filtrarAsteroides(asteroides, filtro) {
+    if (filtro === PELIGROSOS_FILTRO) {
+        return filtrarPeligrosos(asteroides)
+    } else if (filtro === RAPIDOS_FILTRO) {
+        return filtrarRapidos(asteroides)
+    }
+    return asteroides
 }

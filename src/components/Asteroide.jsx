@@ -1,3 +1,5 @@
+import { formatearNumero } from '../logic'
+
 const DIAMETRO_DECIMALES = 3
 
 export default function Asteroide({ asteroide }) {
@@ -13,10 +15,4 @@ export default function Asteroide({ asteroide }) {
             </p>
         </div>
     )
-}
-
-function formatearNumero(valor, unidad = "", decimales = 0) {
-    return Number.isFinite(valor)
-        ? `${valor.toFixed(decimales)}${unidad ? ` ${unidad}` : ""}`
-        : "Sin datos"
 }
