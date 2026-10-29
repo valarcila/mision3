@@ -37,7 +37,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-#estado {
+.estado {
   color: var(--extra);
   text-align: center;
 }
@@ -61,17 +61,13 @@ h2 {
   animation: cargando 2s infinite;
 }
 
-#reintentar:not(.oculto) {
+#reintentar {
   display: block;
   margin: 10px auto;
 }
 
 #reintentar:hover {
   background-color: var(--verde);
-}
-
-.oculto {
-  display: none;
 }
 
 .informacion {

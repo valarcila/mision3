@@ -6,9 +6,9 @@ const CARGADO_MENSAJE = "Cargado correctamente"
 
 export default function Estado({ asteroides, estado, error, reintentar }) {
     return (
-        <>
+        <div className = "estado">
             {estado === ESTADOS.CARGANDO ? (
-                <p>{CARGANDO_MENSAJE}</p>
+                <p className = "cargando">{CARGANDO_MENSAJE}</p>
             ) : estado === ESTADOS.ERROR ? (
                 <>
                     <p>{error}</p>
@@ -26,6 +26,6 @@ export default function Estado({ asteroides, estado, error, reintentar }) {
                     <Asteroides asteroides = {asteroides} />
                 </>
             )}
-        </>
+        </div>
     )
 }

@@ -2,7 +2,7 @@ import Asteroide from './Asteroide'
 
 export default function Asteroides({ asteroides }) {
     return (
-        <div className = 'contenedor_asteroides'>
+        <div className = "contenedor_asteroides">
             {asteroides.length === 0 ? (
                 <p>Sin datos</p>
             ) : (
