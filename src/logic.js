@@ -14,7 +14,7 @@ export function obtenerFechas() {
     const fin = formatearFecha(fechaFin)
     const inicio = formatearFecha(fechaInicio)
 
-    return {inicio, fin}
+    return { inicio, fin }
 }
 
 // formatear fechas aaaa-mm-dd

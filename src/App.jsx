@@ -10,7 +10,7 @@ import { calcularDistanciaMinima, filtrarAsteroides } from './logic'
 
 function App() {
   const [filtro, setFiltro] = useState(FILTROS.TODOS)
-  const { asteroides, estado, error } = useAsteroides()
+  const { asteroides, estado, error, reintentar } = useAsteroides()
 
   // informacion
   const numero = asteroides.length
@@ -30,7 +30,12 @@ function App() {
         <section>
           <h2>Explorar asteroides</h2>
           <Filtros filtro = {filtro} cambiarFiltro = {setFiltro} />
-          <Estado estado = {estado} error = {error} asteroides = {visibles} />
+          <Estado 
+            estado = {estado} 
+            error = {error} 
+            asteroides = {visibles} 
+            reintentar = {reintentar}
+          />
         </section>
       </main>
     </>

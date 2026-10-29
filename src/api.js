@@ -31,7 +31,7 @@ export async function obtenerAsteroides(inicio, fin, signal) {
     try {
         respuesta = await fetch(`${BASE_URL}?${parametros}`, {
             signal: AbortSignal.any([
-                // cancelación react
+                // cancelacion react
                 signal ?? new AbortController().signal,
                 AbortSignal.timeout(TIEMPO_ESPERA)
             ])

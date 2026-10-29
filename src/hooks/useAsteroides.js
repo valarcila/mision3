@@ -12,9 +12,17 @@ export default function useAsteroides() {
     const [asteroides, setAsteroides] = useState([])
     const [estado, setEstado] = useState(ESTADOS.CARGANDO)
     const [error, setError] = useState(null)
+    const [ reintentos, setReintentos ] = useState(0)
+
+    function reintentar() {
+        setReintentos(r => r + 1)
+    }
 
     useEffect(() => {
         const controller = new AbortController()
+
+        setEstado(ESTADOS.CARGANDO)
+        setError(null)
 
         async function cargarAsteroides() {
             try {
@@ -39,7 +47,7 @@ export default function useAsteroides() {
         cargarAsteroides()
 
         return () => {controller.abort()}
-    }, [])
+    }, [reintentos])
 
-    return { asteroides, estado, error }
+    return { asteroides, estado, error, reintentar }
 }
