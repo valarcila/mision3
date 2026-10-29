@@ -1,8 +1,7 @@
+import { FILTROS } from './filtros'
+
 // velocidad minima para considerar rápido un asteroide, km/h 
 const UMBRAL_VELOCIDAD = 70000
-
-const PELIGROSOS_FILTRO = "peligrosos"
-const RAPIDOS_FILTRO = "rapidos"
 
 // obtener intervalo de fechas
 export function obtenerFechas() {
@@ -85,9 +84,9 @@ export function formatearNumero(valor, unidad = "", decimales = 0) {
 
 // filtrar asteroides
 export function filtrarAsteroides(asteroides, filtro) {
-    if (filtro === PELIGROSOS_FILTRO) {
+    if (filtro === FILTROS.PELIGROSOS) {
         return filtrarPeligrosos(asteroides)
-    } else if (filtro === RAPIDOS_FILTRO) {
+    } else if (filtro === FILTROS.RAPIDOS) {
         return filtrarRapidos(asteroides)
     }
     return asteroides

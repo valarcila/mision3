@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { obtenerAsteroides } from '../api'
+import { ESTADOS } from '../estados'
 import { 
     obtenerFechas,
     aplanarAsteroides,
@@ -9,7 +10,7 @@ import {
 
 export default function useAsteroides() {
     const [asteroides, setAsteroides] = useState([])
-    const [cargando, setCargando] = useState(true)
+    const [estado, setEstado] = useState(ESTADOS.CARGANDO)
     const [error, setError] = useState(null)
 
     useEffect(() => {
@@ -24,19 +25,21 @@ export default function useAsteroides() {
                 const transformados = transformarAsteroides(aplanados)
                 const ordenados = ordenarAsteroides(transformados)
 
-                if (!controller.signal.aborted) setAsteroides(ordenados)
-
+                if (!controller.signal.aborted) {
+                    setEstado(ESTADOS.CARGADO)
+                    setAsteroides(ordenados)
+                }
             } catch (e) {
-                if (!controller.signal.aborted) setError(e.message)
-            } finally {
-                if (!controller.signal.aborted) setCargando(false)
+                if (!controller.signal.aborted) {
+                    setEstado(ESTADOS.ERROR)
+                    setError(e.message)
+                }
             }
         }
-
         cargarAsteroides()
 
         return () => {controller.abort()}
     }, [])
 
-    return { asteroides, cargando, error }
+    return { asteroides, estado, error }
 }

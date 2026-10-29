@@ -1,9 +1,9 @@
-export default function Header() {
+export default function Header({ titulo, subtitulo, autora }) {
     return (
         <header>
-            <h1>Near Earth Object Web Service</h1>
-            <p><b>Asteroids NeoWs (NASA)</b></p>
-            <p>Valeria Arcila Rodríguez</p>
+            <h1>{titulo}</h1>
+            <p><b>{subtitulo}</b></p>
+            <p>{autora}</p>
         </header>
     )
 }

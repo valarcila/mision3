@@ -1,7 +1,5 @@
 import { formatearNumero } from '../logic'
 
-const DISTANCIA_DECIMALES = 3
-
 export default function Informacion({ numero, distancia }) {
     return (
         <section>
@@ -14,7 +12,7 @@ export default function Informacion({ numero, distancia }) {
                 </div>
                 <div className = "contenedor_informacion">
                     <h3>Distancia mínima</h3>
-                    <p className = "valor">{formatearNumero(distancia, "", DISTANCIA_DECIMALES)}</p>
+                    <p className = "valor">{formatearNumero(distancia)}</p>
                     <p className = "comentario">km</p>
                 </div>
             </div>
