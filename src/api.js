@@ -39,9 +39,12 @@ export async function obtenerAsteroides(inicio, fin, signal) {
     } catch (error) {
         if (error.name === "AbortError") throw error
 
-        if (error.name === "TimeoutError") throw new Error("La NASA ha tardado demasiado en responder") 
+        if (error.name === "TimeoutError") throw new Error(
+            "La NASA ha tardado demasiado en responder",
+            { cause: error }
+        ) 
       
-        throw new Error("No se ha podido conectar con la NASA")
+        throw new Error("No se ha podido conectar con la NASA", { cause: error })
     }
 
     // limite de peticiones
@@ -56,7 +59,7 @@ export async function obtenerAsteroides(inicio, fin, signal) {
     try {
         value = await respuesta.json()
     } catch (error) {
-        throw new Error("No se han podido parsear los datos de la NASA")
+        throw new Error("No se han podido parsear los datos de la NASA", { cause: error })
     }
     
     // guardar cache   

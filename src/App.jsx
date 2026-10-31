@@ -1,16 +1,18 @@
 import { useState } from 'react'
+import Asteroides from './components/Asteroides'
 import Estado from './components/Estado'
 import Filtros from './components/Filtros'
 import Header from './components/Header'
 import Informacion from './components/Informacion'
 import useAsteroides from './hooks/useAsteroides'
 import './App.css'
+import { ESTADOS } from './estados'
 import { FILTROS } from './filtros'
 import { calcularDistanciaMinima, filtrarAsteroides } from './logic'
 
 function App() {
   const [filtro, setFiltro] = useState(FILTROS.TODOS)
-  const { asteroides, estado, error, reintentar } = useAsteroides()
+  const { asteroides, estado, reintentar } = useAsteroides()
 
   // informacion
   const numero = asteroides.length
@@ -30,12 +32,11 @@ function App() {
         <section>
           <h2>Explorar asteroides</h2>
           <Filtros filtro = {filtro} cambiarFiltro = {setFiltro} />
-          <Estado 
-            estado = {estado} 
-            error = {error} 
-            asteroides = {visibles} 
-            reintentar = {reintentar}
-          />
+          <Estado estado = {estado} reintentar = {reintentar} />
+          {/* asteroides si cargado */}
+          {estado.state === ESTADOS.CARGADO &&
+            <Asteroides asteroides = {visibles} />
+          }
         </section>
       </main>
     </>

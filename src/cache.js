@@ -17,7 +17,7 @@ export function consultarCache(key) {
 
         // convertir string json en objeto js
         return JSON.parse(data)          
-    } catch (error) {
+    } catch {
         // eliminar datos corruptos
         localStorage.removeItem(key)
         return null
