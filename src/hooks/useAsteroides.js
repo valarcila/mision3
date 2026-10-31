@@ -10,11 +10,11 @@ import {
 
 export default function useAsteroides() {
     const [asteroides, setAsteroides] = useState([])
-    const [estado, setEstado] = useState({state: ESTADOS.CARGANDO, error: null})
+    const [estado, setEstado] = useState({status: ESTADOS.CARGANDO, error: null})
     const [reintentos, setReintentos] = useState(0)
 
     function reintentar() {
-        setEstado({ state: ESTADOS.CARGANDO, error: null })
+        setEstado({ status: ESTADOS.CARGANDO, error: null })
         setReintentos(r => r + 1)
     }
 
@@ -31,12 +31,12 @@ export default function useAsteroides() {
                 const ordenados = ordenarAsteroides(transformados)
 
                 if (!controller.signal.aborted) {
-                    setEstado({ state: ESTADOS.CARGADO, error: null })
+                    setEstado({ status: ESTADOS.CARGADO, error: null })
                     setAsteroides(ordenados)
                 }
             } catch (e) {
                 if (!controller.signal.aborted) {
-                    setEstado({ state: ESTADOS.ERROR, error: e.message })
+                    setEstado({ status: ESTADOS.ERROR, error: e.message })
                 }
             }
         }

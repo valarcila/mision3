@@ -18,7 +18,7 @@ export default function Estado({ estado, reintentar }) {
 
     return (
         <div className = "estado">
-            {vistas[estado.state]}
+            {vistas[estado.status]}
         </div>
     )
 }

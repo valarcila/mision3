@@ -34,7 +34,7 @@ function App() {
           <Filtros filtro = {filtro} cambiarFiltro = {setFiltro} />
           <Estado estado = {estado} reintentar = {reintentar} />
           {/* asteroides si cargado */}
-          {estado.state === ESTADOS.CARGADO &&
+          {estado.status === ESTADOS.CARGADO &&
             <Asteroides asteroides = {visibles} />
           }
         </section>
