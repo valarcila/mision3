@@ -91,3 +91,9 @@ export function filtrarAsteroides(asteroides, filtro) {
     }
     return asteroides
 }
+
+export function buscarAsteroides(asteroides, busqueda) {
+    return asteroides.filter(asteroide =>
+        asteroide.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    )
+}

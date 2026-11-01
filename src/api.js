@@ -1,7 +1,4 @@
-import {
-    guardarCache,
-    consultarCache
-} from './cache.js' 
+import { guardarCache, consultarCache } from './cache.js' 
 
 const BASE_URL = "https://api.nasa.gov/neo/rest/v1/feed"
 const TIEMPO_ESPERA = 10000

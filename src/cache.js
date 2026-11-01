@@ -1,5 +1,5 @@
 // una hora
-const CACHE_DURACION = 1000
+const CACHE_DURACION = 60 * 60 * 1000
 
 export function guardarCache(key, value) {
     const caducidad = Date.now() + CACHE_DURACION
