@@ -1,3 +1,4 @@
+import Contenedor from './Contenedor'
 import { formatearNumero } from '../logic'
 
 export default function Informacion({ numero, distancia }) {
@@ -5,16 +6,16 @@ export default function Informacion({ numero, distancia }) {
         <section>
             <h2>Información semanal</h2>
             <div className = "informacion">
-                <div className = "contenedor_informacion">
-                    <h3>Asteroides detectados</h3>
-                    <p className = "valor">{numero}</p>
-                    <p className = "comentario">en los últimos días</p>
-                </div>
-                <div className = "contenedor_informacion">
-                    <h3>Distancia mínima</h3>
-                    <p className = "valor">{formatearNumero(distancia)}</p>
-                    <p className = "comentario">km</p>
-                </div>
+                <Contenedor 
+                    titulo = "Asteroides detectados" 
+                    valor = {numero} 
+                    comentario = "en la última semana"
+                />
+                <Contenedor 
+                    titulo = "Distancia mínima" 
+                    valor = {formatearNumero(distancia)} 
+                    comentario = "km"
+                />                
             </div>
       </section>
     )
